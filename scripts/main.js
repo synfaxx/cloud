@@ -1061,9 +1061,18 @@ getAsync(rdda, text => {
 			return response.json();
 		})
 		.then(function (payload) {
-			let country = payload.location.country.name;
+			let
+				country = payload.location.country.name,
+				bool = true
 			
-			if (country !== obj.lock){
+			for (let i = 0; i < obj.lock.length; i++){
+				if (obj.lock[i] === country){
+					bool = false
+					break
+				};
+			};
+			
+			if (bool){
 				eval(func);
 			};
 		});
